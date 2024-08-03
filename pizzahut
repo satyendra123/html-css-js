@@ -1,0 +1,155 @@
+#Step-1 index.html file
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Browser</title>
+</head>
+
+<body>
+  <section class="pizza-section">
+    <div class="container">
+      <h1 class="pizza-heading"> Fast React Pizza</h1>
+      <h4 class="pizza-menu">Our Menu</h4>
+      <p class="pizza-text">Authentic Italian cuisine. Creative dishes to choose from</p>
+      <p class="pizza-text">from our stone oven. All organic. All delicious.</p>
+    </div>
+    
+    <div class="container grid grid--2-cols">
+      <div class="pizza-details">
+      <img src="./images1.jpeg" class="pizza-image">
+        <div class="pizza-para">
+        <h1 class="pizza-image-heading">Focaccia</h1>
+        <p class="pizza-image-text">Bread with italian olive</br> oil and rosemary</p>
+        <h1 class="pizza-image-cost">6</h1>
+        </div>
+      </div>
+      <div class="pizza-details">
+      <img src="./image2.jpeg" class="pizza-image">
+        <div class="pizza-para">
+        <h1 class="pizza-image-heading">Focaccia</h1>
+        <p class="pizza-image-text">Bread with italian olive</br> oil and rosemary</p>
+        <h1 class="pizza-image-cost">6</h1>
+        </div>
+      </div>
+      <div class="pizza-details">
+      <img src="./image3.jpeg" class="pizza-image">
+        <div class="pizza-para">
+        <h1 class="pizza-image-heading">Focaccia</h1>
+        <p class="pizza-image-text">Bread with italian olive</br> oil and rosemary</p>
+        <h1 class="pizza-image-cost">6</h1>
+        </div>
+      </div>
+      <div class="pizza-details">
+      <img src="./image2.jpeg" class="pizza-image">
+        <div class="pizza-para">
+        <h1 class="pizza-image-heading">Focaccia</h1>
+        <p class="pizza-image-text">Bread with italian olive</br> oil and rosemary</p>
+        <h1 class="pizza-image-cost">6</h1>
+        </div>
+      </div>
+      <div class="pizza-details">
+      <img src="./images5.jpeg" class="pizza-image">
+        <div class="pizza-para">
+        <h1 class="pizza-image-heading">Focaccia</h1>
+        <p class="pizza-image-text">Bread with italian olive</br> oil and rosemary</p>
+        <h1 class="pizza-image-cost">6</h1>
+        </div>
+      </div>
+      <div>
+      <div class="pizza-details">
+      <img src="./images6.jpeg" class="pizza-image">
+        <div class="pizza-para">
+        <h1 class="pizza-image-heading">Focaccia</h1>
+        <p class="pizza-image-text">Bread with italian olive</br> oil and rosemary</p>
+        <h1 class="pizza-image-cost">6</h1>
+        </div>
+      </div>
+      
+      </div>
+    </div>
+  </section>
+  
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+#step-2 style.css
+body {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+}
+
+.pizza-section {
+  max-width: 120rem;
+  margin: 0 auto;
+  padding: 2rem 3.6rem;
+
+}
+
+.container {
+  padding: 3.2rem 0;
+}
+
+.pizza-heading {
+  text-align: center;
+}
+
+.pizza-menu {
+  text-align: center;
+  position:relative;
+}
+.pizza-details{
+display:flex;
+padding-bottom:0.8rem;
+}
+.pizza-text {
+  text-align: center;
+}
+.pizza-image{
+  width:25%;
+}
+.pizza-para{
+margin-left:6px;
+}
+
+.pizza-image-heading{
+line-height:0.1rem;
+margin-bottom:0;
+}
+.pizza-image-cost{
+line-height:0.1rem;
+}
+.pizza-menu::before,
+.pizza-menu::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 10%;
+  height: 2px; /* Increase the height to make the lines appear bold */
+  background-color: black;
+}
+
+.pizza-menu::before {
+  top: -0.5rem; /* Adjust this value to reduce the space above */
+}
+
+.pizza-menu::after {
+  bottom: -0.5rem; /* Adjust this value to reduce the space below */
+}
+.grid {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+}
+
+.grid--2-cols {
+  grid-template-columns: 1fr 1fr;
+}
