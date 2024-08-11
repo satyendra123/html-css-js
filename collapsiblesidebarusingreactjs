@@ -1,0 +1,88 @@
+#components/Sidebar.jsx
+import React from 'react';
+import './Sidebar.css';
+
+const Sidebar = ({ isOpen }) => {                                      // hum app.js se sidebar me props ki madad se isOpen send kar rhe hai iski value true ya false
+  return (
+    <aside className={`sidebar ${isOpen ? 'open' : 'close'}`}>         // yaha matlab hai ki className="sidebar open" is tarah se aa jaye agar isOpen variable true hai to aur agar false hai to className="sidebar close" aa jaye likhkar
+      <ul>
+        <li>Home</li>
+        {/* Add more sidebar items here */}
+      </ul>
+    </aside>
+  );
+};
+
+export default Sidebar;
+#note- 
+
+#step-2 Sidebar.css
+.sidebar {
+    background-color: pink;
+    width: 12rem;
+    height: 100vh;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .sidebar.close {
+    margin-left: -12rem;
+  }
+  
+  .sidebar.open {
+    margin-left: 0;
+  }
+
+#step-3 Dashboard.jsx
+import React from 'react';
+import './Dashboard.css';
+
+const Dashboard = () => {
+  return (
+    <main className="dashboard">
+      <nav>
+        <img src="" alt="company-logo" />
+        <span className="company-heading">Houston System</span>
+        <ul>
+          {/* Add more navigation items here */}
+        </ul>
+      </nav>
+      {/* Add more dashboard content here */}
+    </main>
+  );
+};
+
+export default Dashboard;
+
+#step-5 Dashboard.css
+.dashboard {
+    padding: 1rem;
+    transition: margin-left 0.3s ease;
+  }
+
+#step-5 App.jsx
+import React, { useState } from 'react';
+import Sidebar from './components/Sidebar';
+import Dashboard from './components/Dashboard';
+import './App.css';
+
+const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const toggleSidebar = () => {
+    setIsOpen(!isOpen);
+  };
+
+  return (
+    <div className="container">
+      <Sidebar isOpen={isOpen} />
+      <div className="main-content">
+        <button className="collapse" onClick={toggleSidebar}>
+          {isOpen ? 'Close Sidebar' : 'Open Sidebar'}
+        </button>
+        <Dashboard />
+      </div>
+    </div>
+  );
+};
+
+export default App;
