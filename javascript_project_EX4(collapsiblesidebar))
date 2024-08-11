@@ -143,3 +143,5 @@ document.querySelector('.collapse').addEventListener('click', function() {
     sidebar.classList.add('close');
   }
 });
+
+#note- isme humne kya kiya hai ki do class bana liya hai open aur close ke name se aur agar javascript ki madad se dynamically hum us classes ko add ya remove kar rhe hai sidebar se
