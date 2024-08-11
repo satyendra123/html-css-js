@@ -1,0 +1,158 @@
+#step-1 index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>JavaScript Example</title>
+</head>
+<body>
+<button class="show-modal ">show model 1</button>
+<button class="show-modal">show model 2</button>
+<button class="show-modal">show model 3</button>
+<div class="modal hidden">
+    <button class="close-modal">&times</button>
+    <h1>I'm a modal window</h1>
+    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Culpa, 
+        temporibus magnam quibusdam, sint eaque beatae, facere 
+        reprehenderit saepe aut earum labore animi neque iusto eveniet. 
+        Quam earum hic, incidunt ad rem accusamus totam fugit dolores 
+        dolorum? Illo sapiente magnam, aliquam ut magni, veniam quis, 
+        inventore dolores eos eligendi dicta. Dolorum, amet similique 
+        doloremque quod est sed quasi, deleniti exercitationem minus in 
+        voluptatibus odit rerum atque, a deserunt. Corporis at, omnis facilis 
+        nam suscipit laborum. Officia, porro culpa? Provident unde nostrum cum 
+        accusamus, odio beatae omnis sed. Facere fugiat laudantium illo. Dolore, 
+        obcaecati ex! Impedit sequi animi ducimus fugit, vel dolore quam 
+        cumque in nostrum, rem labore doloremque amet cum quae 
+        consequuntur vitae. Laudantium voluptate exercitationem rerum cum 
+        amet optio sit saepe dignissimos beatae veniam alias eaque minima 
+        quidem illo vel deserunt, nesciunt doloremque rem velit atque itaque 
+        sapiente tempore maiores. Nemo nesciunt blanditiis totam neque 
+        praesentium fugit at distinctio aperiam incidunt quam. Aperiam harum 
+        suscipit, doloribus provident vero dolore molestiae distinctio quaerat 
+        eveniet nulla quasi, quibusdam quia doloremque commodi tenetur at. 
+        Odio corrupti, quo eos cum explicabo facilis unde nulla pariatur animi 
+        impedit magnam itaque harum dolores quibusdam aliquam veniam vel 
+        non qui aliquid laboriosam? Quis error aperiam eos iusto, quaerat placeat 
+        perspiciatis hic earum vero minima adipisci ipsam laboriosam ipsa, odio, 
+        assumenda voluptas repellat veritatis commodi quisquam expedita 
+        accusantium veniam beatae inventore totam. Architecto suscipit aliquam
+         placeat atque! Illum, incidunt iste molestias eaque quis voluptas nobis 
+         dicta, ex ea minima ratione placeat 
+        deserunt! Similique veritatis cumque dolore neque enim?</p>
+</div>
+<div class="overlay hidden"></div>
+    <script src="./script.js"></script>
+</body>
+</html>
+
+#Step-2 style.css
+*{
+    margin:0;
+    padding:0;
+    box-sizing:inherit;
+}
+ html{
+    font-size:62.5%;
+    box-sizing: border-box;
+ }
+
+ body {
+    font-family: sans-serif;
+    color: #333;
+    line-height: 1.5;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    background: linear-gradient(to top left, #28b487, #7dd56f);
+}
+
+.show-modal{
+    font-size: 2rem;
+    font-weight:600;
+    padding: 1.75rem 3.5rem;
+    margin:5rem 2rem;
+    border:none;
+    background-color: #fff;
+    color:#444;
+    border-radius:10rem;
+    cursor:pointer;
+}
+
+.close-modal{
+    position:absolute;
+    top:1.2rem;
+    right:2rem;
+    font-size:5rem;
+    color:#333;
+    cursor:pointer;
+    border:none;
+    background:none;
+}
+
+h1{
+    font-size:2.5rem;
+    margin-bottom:2rem;
+}
+
+p{
+    font-size:1.8rem;
+}
+
+/* CLASSES TO MAKE MODAL WORK */
+
+.hidden{
+    display:none;
+}
+
+.modal{
+    position:absolute;
+    top:70%;
+    left:50%;
+    transform:translate(-50%, -50%);
+    width:70%;
+    background-color: white;
+    padding:6rem;
+    border-radius: 5px;
+    box-shadow: 0 3rem 5rem rgba(0,0,0,0.3);
+    z-index: 10;
+}
+
+.overlay{
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+}
+
+#Step-3 script.js
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const btnCloseModal = document.querySelector('.close-modal'); // Fixed typo
+const btnOpenModal = document.querySelectorAll('.show-modal'); // Fixed typo
+console.log(btnOpenModal);
+/*
+for (let i = 0; i < btnOpenModal.length; i++) {
+   console.log(btnOpenModal[i]);
+}
+Note- aise karne par ye mujhe <butoon class="show-modal">show modal1 </button> <butoon class="show-modal">show modal2 </button> <butoon class="show-modal">show modal3</button>
+*/
+for (let i = 0; i < btnOpenModal.length; i++) {
+    btnOpenModal[i].addEventListener('click', function(){
+        console.log('button clicked');
+        modal.classList.remove('hidden');
+        overlay.classList.remove('hidden');
+    })
+ }
+
+    btnCloseModal.addEventListener('click',function(){
+    console.log('button clicked');
+    modal.classList.add('hidden');
+    overlay.classList.add('hidden');
+ })
+
