@@ -1,0 +1,145 @@
+#step-1 index.html
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Browser</title>
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar">
+      <ul>
+        <li>Home</li>
+      </ul>
+    </aside>
+    <main class="dashboard">
+      <nav>
+        <button class="collapse">click</button>
+        <img src="" alt="company-logo" />
+        <span class="company-heading">Houston System</span>
+        <ul>
+        </ul>
+      </nav>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="stylesheet" href="style.css" />
+  <title>Browser</title>
+</head>
+
+<body>
+  <div class="container">
+    <aside class="sidebar close">
+      <ul>
+        <li>Home</li>
+      </ul>
+    </aside>
+    <main class="dashboard">
+      <nav>
+        <button class="collapse">click</button>
+        <img src="" alt="company-logo" />
+        <span class="company-heading">Houston System</span>
+        <ul>
+          <!-- Additional navigation items here -->
+        </ul>
+      </nav>
+    </main>
+  </div>
+  <script src="script.js"></script>
+</body>
+
+</html>
+
+#Step-2 style.css
+/*
+body {
+    margin: 0px;
+  }
+  
+  .sidebar {
+    background-color: pink;
+    width: 12rem;
+    height: 100vh;
+    box-shadow: 0,0,0,rgba();
+  }
+  
+  .container {
+    display: flex;
+    gap: 10px;
+    transition: all ease 0.3s;
+  }
+  
+  .hidden {
+    display: none;
+  }
+  
+*/
+
+body {
+    margin: 0;
+  }
+  
+  .container {
+    display: flex;
+    transition: margin-left 0.3s ease;
+  }
+  
+  .sidebar {
+    background-color: pink;
+    width: 12rem;
+    height: 100vh;
+    transition: margin-left 0.3s ease;
+  }
+  
+  /* Sidebar closed */
+  .sidebar.close {
+    margin-left: -12rem;
+  }
+  
+  /* Sidebar open */
+  .sidebar.open {
+    margin-left: 0;
+  }
+  
+  .dashboard {
+    flex: 1;
+    transition: margin-left 0.3s ease;
+  }
+
+#EX-3
+/*
+// your code goes here
+const sidebar = document.querySelector('.sidebar');
+
+document.querySelector('.collapse').addEventListener('click', function() {
+  sidebar.classList.toggle('hidden');
+});
+*/
+
+const sidebar = document.querySelector('.sidebar');
+
+document.querySelector('.collapse').addEventListener('click', function() {
+  if (sidebar.classList.contains('close')) {
+    sidebar.classList.remove('close');
+    sidebar.classList.add('open');
+  } else {
+    sidebar.classList.remove('open');
+    sidebar.classList.add('close');
+  }
+});
