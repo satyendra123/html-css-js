@@ -429,3 +429,7 @@ const Logout = ({ Toggle }) => {
 }
 
 export default Logout;
+
+#Note- actually iska main concept ye hai ki app.js me maine bootstrap ki madad se maine ek rows lekar usme two cols banaya hai sidebar ke liye maine col-2 diya hai aur dashboard ke liye maine col-10 diya hai. aur maine
+isme hi ek function banaya hai Toggle ka aur is function ko pass kara diya hai sare component me. aur maine kya kiya hai ki jab mera toggle variable ki value true rahega to mai col-2 wala code nahi run karunga aur col-10 ki jagah mai col-12 use karunga dashboard ke liye conditionally. aur agar mera toggle ki value false raht hai to us case me 
+mai simply kya karunga ki col-2 run hoga means sidebar dikhega aur dashboard jo hai wo col-10 run hoga kyuki isme bhi humne condition lgaya tha
