@@ -1,0 +1,143 @@
+#Step-1 components/Sidenav.jsx Note- agar mai chahta hu ki mera navbar upar dikhe to mai navbar wale code ko aside ke upar rakhunga aur agar mai chahta hu ki mera Sidebar upar dikhe aur mera Navbar sidebar ke bagal se dikhe to mai apne Navbar wale code ko aside ke niche rakhunga
+import React, { useState } from "react";
+import "../index.css";
+import { RiMenu2Line } from "react-icons/ri";
+import BarChart from './BarChart';
+import DonutChart from './DonutChart';
+
+const Sidebar = () => {
+  
+  const [size, setSize] = useState("230px"); // Initial width of the sidebar
+
+  const toggleSidebar = () => {
+    setSize(size === "230px" ? "0px" : "230px"); // Toggle between 230px and 0px
+  };
+
+  return (
+    <>
+    <nav className="bg-white p-6 shadow flex items-center justify-between sticky top-0 left-0"
+     style={{
+       zIndex: 3, // Ensure navbar is above everything else
+       position: 'relative', // Ensure navbar stacking is relative to its parent
+     }}>
+  <div className="flex gap-4 items-center">
+    <button
+      className="bg-gray-50 hover:bg-indigo-600 hover:text-white w-8 h-8"
+      onClick={toggleSidebar}
+    >
+      <RiMenu2Line className="text-xl" />
+    </button>
+    <h1 className="text-md font-semibold">PA SYSTEM</h1>
+  </div>
+</nav>
+      <aside
+        className="bg-indigo-600 fixed top-0 left-0 h-full overflow-hidden"
+        style={{
+          width: size,
+          transition: "0.3s",
+        }}
+      >
+        {/* Sidebar content */}
+      </aside>
+
+      <section
+        className="bg-gray-100 h-screen"
+        style={{
+          marginLeft: size === "0px" ? "0px" : "230px", // Adjust the margin based on the sidebar size
+          transition: "0.3s",
+          zIndex: 2, // Ensure content is above the sidebar
+          position: 'relative', // Ensure content stacking is relative to its parent
+        }}
+      >
+        <div className="p-6">
+          <h1 className="text-2xl font-bold">Dashboard</h1>
+          <p>
+            Welcome to your dashboard. Here you can see an overview of your
+            activities.
+          </p>
+
+          <div className="flex">
+            <div className="flex-1 w-1/2 h-96 bg--500 p-4">
+              <BarChart/>
+            </div>
+            <div className="flex-1 w-1/2 h-96 bg-white-500 p-4">
+              <DonutChart />
+            </div>
+          </div>
+        </div>
+      </section>
+    </>
+  );
+};
+
+export default Sidebar;
+
+#Step-2 components/BarChart.jsx
+// BarChartComponent.js
+import React from 'react';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
+
+const data = [
+  { name: 'Jan', value: 4000 },
+  { name: 'Feb', value: 3000 },
+  { name: 'Mar', value: 2000 },
+  { name: 'Apr', value: 2780 },
+  { name: 'May', value: 1890 },
+  { name: 'Jun', value: 2390 },
+  { name: 'Jul', value: 3490 },
+];
+
+const BarChartComponent = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <BarChart width={400} height={400} data={data}>
+      <CartesianGrid strokeDasharray="3 3" />
+      <XAxis dataKey="name" />
+      <YAxis />
+      <Tooltip />
+      <Legend />
+      <Bar dataKey="value" fill="#8884d8" />
+    </BarChart>
+  </div>
+);
+
+export default BarChartComponent;
+
+#Step-3 components/DonutChart.jsx
+// DonutChartComponent.js
+import React from 'react';
+import { PieChart, Pie, Cell, Tooltip, Legend } from 'recharts';
+
+const data = [
+  { name: 'Group A', value: 400 },
+  { name: 'Group B', value: 300 },
+  { name: 'Group C', value: 300 },
+  { name: 'Group D', value: 200 },
+];
+
+const COLORS = ['#0088FE', '#00C49F', '#FFBB28', '#FF8042'];
+
+const DonutChartComponent = () => (
+  <div className="w-full h-full flex items-center justify-center">
+    <PieChart width={400} height={400}>
+      <Pie
+        data={data}
+        cx={200}
+        cy={200}
+        innerRadius={80}
+        outerRadius={120}
+        fill="#8884d8"
+        paddingAngle={5}
+        dataKey="value"
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+        ))}
+      </Pie>
+      <Tooltip />
+      <Legend />
+    </PieChart>
+  </div>
+);
+
+export default DonutChartComponent;
+
