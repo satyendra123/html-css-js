@@ -1,0 +1,597 @@
+#Step-1 components/Admin/Layout.jsx
+import { useState } from "react"
+import {Link, useLocation} from 'react-router-dom'
+const Layout = ({children}) =>{
+    const [size, setSize] = useState(280);
+    const [Mobilesize, setMobileSize] = useState(0);
+    const[accountMenu, setAccountMenu] = useState(false);
+    const location = useLocation()
+
+    console.log(location)
+    const menus = [
+        {
+            label:'Dashboard',
+            icons:<i className="ri-shopping-cart-2-line mr-2"></i>,
+            link:'/admin/dashboard'
+        },
+        {
+            label:'Customer',
+            icons:<i className="ri-user-line mr-2"></i>,
+            link:'/admin/customers'
+        },
+        {
+            label:'Product',
+            icons:<i className="ri-store-fill mr-2"></i>,
+            link:'/admin/product'
+        },
+        {
+            label:'Order',
+            icons:<i className="ri-shape-line mr-2"></i>,
+            link:'/admin/orders'
+        },
+        {
+            label:'payments',
+            icons:<i className="ri-bank-card-line mr-2"></i>,
+            link:'/admin/payments'
+        },
+        {
+            label:'setting',
+            icons:<i className="ri-settings-line mr-2"></i>,
+            link:'/admin/setting'
+        }
+
+    ]
+ return(
+<>
+     {/* desktop */}
+     <div className="md:block hidden">
+        <aside className="w-[280px] bg-indigo-600 fixed top-0 left-0 h-full overflow-hidden"
+        style={{
+            width: size,
+            transition:'0.3s'
+            }}>
+                <div className="flex flex-col">
+                    {
+                        menus.map((item, index)=>(
+                   <Link to={item.link} className="px-4 py-3 text-gray-50 text-[17.5px] hover:bg-rose-600 hover:text-white"
+                    style={{background:(location.pathname===item.link) ? 'red':'transparent'}}>
+                    
+                    {item.icons}
+                    {item.label}
+                    </Link>
+                    ))
+                }
+                <button className="px-4 py-3 text-gray-50 text-[17.5px] hover:bg-rose-600 hover:text-white text-left"><i class="ri-logout-box-r-line text-white mr-2"></i>Logout</button>
+                   </div>
+        </aside>
+        <section className="bg-gray-100 h-screen"
+        style={{
+            marginLeft:size,
+            transition:'0.3s'
+            }}>
+            
+        <nav className="bg-white p-6 shadow flex items-center justify-between sticky top-0 left-0">
+           <div className="flex gap-4 items-center">
+           <button className="bg-gray-50 hover:bg-indigo-600 hover:text-white w-8 h-8" onClick={() => setSize(size===280 ? 0: 280)}>
+                            <i className="ri-menu-2-line text-xl"></i>
+                        </button> 
+            <h1 className="text-md font-semibold">shopcode</h1>
+           </div>
+
+           <div>
+            <button className="relative">
+            <img src="/images/images.jpeg" className="w-14 h-14 rounded-full" alt="" onClick={()=>setAccountMenu(!accountMenu)}/>
+            {accountMenu &&  <div className=" absolute top-18 right-0 bg-white-500 p-6 w-[200px] shadow-lg">
+             <div>
+                <h1 className="text-lg font-semibold"> Er. John Doe</h1>
+                <p className="text-gray-500">example@gmail.com</p>
+                <div className="h-px bg-gray-200 my-4"/>
+                <button><i class="ri-logout-box-r-line mr-2"></i>logout</button>
+             </div>
+            </div>}
+
+            </button>
+           </div>
+        </nav>
+            <div className="p-6">
+                {children}
+            </div>
+            
+        </section>
+    </div>
+ {/* mobile */}
+    <div className="md:hidden block">
+        <aside className="w-[280px] bg-indigo-600 fixed top-0 left-0 h-full overflow-hidden z-50"
+        style={{
+            width: Mobilesize,
+            transition:'0.3s'
+            }}>
+                <div className="flex flex-col">
+                    <button  className="text-right" onClick={() => setMobileSize(Mobilesize===0 ? 280: 0)}><i className="ri-close-line text-red-600 text-xl"></i>
+
+                    </button>
+                    {
+                        menus.map((item, index)=>(
+                   <Link to={item.link} className="px-4 py-3 text-gray-50 text-[17.5px] hover:bg-rose-600 hover:text-white"
+                    style={{background:(location.pathname===item.link) ? 'red':'transparent'}}>
+                    
+                    {item.icons}
+                    {item.label}
+                    </Link>
+                    ))
+                }
+                <button className="px-4 py-3 text-gray-50 text-[17.5px] hover:bg-rose-600 hover:text-white text-left"><i class="ri-logout-box-r-line text-white mr-2"></i>Logout</button>
+                   </div>
+        </aside>
+        <section className="bg-gray-100 h-screen">
+            
+        <nav className="bg-white p-6 shadow flex items-center justify-between sticky top-0 left-0">
+           <div className="flex gap-4 items-center">
+           <button className="bg-gray-50 hover:bg-indigo-600 hover:text-white w-8 h-8" onClick={() => setMobileSize(Mobilesize===0 ? 280: 0)}>
+                            <i className="ri-menu-2-line text-xl"></i>
+                        </button> 
+            <h1 className="text-md font-semibold">shopcode</h1>
+           </div>
+
+           <div>
+            <button className="relative">
+            <img src="/images/images.jpeg" className="w-14 h-14 rounded-full" alt="" onClick={()=>setAccountMenu(!accountMenu)}/>
+            {accountMenu &&  <div className=" absolute top-18 right-0 bg-white-500 p-6 w-[200px] shadow-lg">
+             <div>
+                <h1 className="text-lg font-semibold"> Er. John Doe</h1>
+                <p className="text-gray-500">example@gmail.com</p>
+                <div className="h-px bg-gray-200 my-4"/>
+                <button><i class="ri-logout-box-r-line mr-2"></i>logout</button>
+             </div>
+            </div>}
+
+            </button>
+           </div>
+        </nav>
+            <div className="p-6">
+                {children}
+            </div>
+            
+        </section>
+    </div>
+</>
+ )
+}
+export default Layout
+
+#Step-2 components/Admin/Customers
+import React, { useState } from 'react';
+import Layout from './Layout';
+
+const Customers= () => {
+  const [Customers, setCustomers] = useState([
+    {
+      customerName: 'Satyendra Singh',
+      email: 'Singhsatyendra885@gmail.com',
+      mobile: '+91 9993771891',
+      date: '12-10-2024 10:15:14 AM',
+    },
+    {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      },
+      {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      },
+      {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      },
+      {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      },
+      {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      },
+      {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      },
+      {
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        date: '12-10-2024 10:15:14 AM',
+      }
+  ]);
+
+  return (
+    <Layout>
+      <h1 className="">Customer</h1>
+      <div className="mt-6">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-rose-500 text-white">
+              <th className="p-4">Customer's Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Customers.map((item, index) => (
+              <tr className="bg-white text-center" key={index} style={{background: (index+1) % 2===0 ? '#f1f5f9' : 'white' }}>
+                <td className="capitalize">
+                    <div className="flex gap-4 items-center"> 
+                        <img src="/images/images.jpeg" className="w-10 h-10 rounded-full"></img>
+                        <div className="flex flex-col justify center">
+                        <span className="font-semibold">{item.customerName}</span>
+                        <small className="text-gray-500">{item.date}</small>
+                        </div>
+                    </div>
+                   
+                </td>
+                <td>{item.email}</td>
+                <td>{item.mobile}</td>
+                <td>{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Layout>
+  );
+}
+
+export default Customers;
+
+#Step-3 components/Admin/Dashboard.jsx
+import Layout from './Layout'
+const Dashboard = () =>
+    {
+        return(
+            <Layout>
+                <h1>Dashboard</h1>
+            </Layout>
+        )
+    }
+    export default Dashboard
+
+#Step-4 components/Admin/Logout.jsx
+import Layout from './Layout'
+const Logout = () =>
+    {
+        return(
+            <Layout>
+                <h1>Dashboard</h1>
+            </Layout>
+        )
+    }
+    export default Logout
+
+#Step-5 components/Admin/NoFound.jsx
+const NoFound= () =>
+    {
+        return (
+        <div className="h-screen bg-gray-600 flex items-center justify-center">
+            <h1>404 | Not Found</h1>
+        </div>
+        )
+    }
+
+    export default NoFound
+
+#Step-6 components/Admin/Orders.jsx
+import React, { useState } from 'react';
+import Layout from './Layout';
+
+const Order= () => {
+  const [orders, setOrders] = useState([
+    {
+      orderId: '#rty345678',
+      customerName: 'Satyendra Singh',
+      email: 'Singhsatyendra885@gmail.com',
+      mobile: '+91 9993771891',
+      product: 'Lenovo iPad 350',
+      amount: '53000',
+      date: '12-10-2024 10:15:14 AM',
+      status: 'Active'
+    },
+    {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      },
+      {
+        orderId: '#rty345678',
+        customerName: 'Satyendra Singh',
+        email: 'Singhsatyendra885@gmail.com',
+        mobile: '+91 9993771891',
+        product: 'Lenovo iPad 350',
+        amount: '53000',
+        date: '12-10-2024 10:15:14 AM',
+        status: 'Active'
+      }
+  ]);
+
+  return (
+    <Layout>
+      <h1>Hi Order</h1>
+      <div className="mt-6">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-rose-500 text-white">
+              <th className="py-4">Order ID</th>
+              <th>Customer's Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Product</th>
+              <th>Amount</th>
+              <th>Date</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+          <tbody>
+            {orders.map((item, index) => (
+              <tr className="bg-white text-center" key={index} style={{background: (index+1) % 2===0 ? '#f1f5f9' : 'white' }}>
+                <td className="py-4">{item.orderId}</td>
+                <td className="capitalize">{item.customerName}</td>
+                <td>{item.email}</td>
+                <td>{item.mobile}</td>
+                <td className="capitalize">{item.product}</td>
+                <td>₹{item.amount}</td>
+                <td>{item.date}</td>
+                <td className="capitalize">
+                    <select className="border p-2 border-gray-200">
+                        <option value="pending">Pending</option>
+                        <option value="processing">Processing</option>
+                        <option value="dispatched">Dispatched</option>
+                        <option value="returned">Returned</option>
+                    </select>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Layout>
+  );
+}
+
+export default Order;
+
+#Step-7 components/Admin/Payments.jsx
+import React, { useState } from 'react';
+import Layout from './Layout';
+
+const Payments= () => {
+  const [Payments, setPayments] = useState([
+    {
+      customerName: 'Satyendra Singh',
+      email: 'Singhsatyendra885@gmail.com',
+      mobile: '+91 9993771891',
+      amount:'$200',
+      date: '12-10-2024 10:15:14 AM',
+    }
+  ]);
+
+  return (
+    <Layout>
+      <h1 className="">Payments</h1>
+      <div className="mt-6">
+        <table className="w-full">
+          <thead>
+            <tr className="bg-rose-500 text-white">
+              <th className="p-4">Customer's Name</th>
+              <th>Email</th>
+              <th>Mobile</th>
+              <th>Amount</th>
+              <th>Date</th>
+            </tr>
+          </thead>
+          <tbody>
+            {Payments.map((item, index) => (
+              <tr className="bg-white text-center" key={index} style={{background: (index+1) % 2===0 ? '#f1f5f9' : 'white' }}>
+                <td className="capitalize">
+                    <div className="flex gap-4 items-center"> 
+                        <img src="/images/images.jpeg" className="w-10 h-10 rounded-full"></img>
+                        <div className="flex flex-col justify center">
+                        <span className="font-semibold">{item.customerName}</span>
+                        <small className="text-gray-500">{item.date}</small>
+                        </div>
+                    </div>
+                   
+                </td>
+                <td>{item.email}</td>
+                <td>{item.mobile}</td>
+                <td>{item.amount}</td>
+                <td>{item.date}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </Layout>
+  );
+}
+
+export default Payments;
+
+#Step-8 components/Admin/Products.jsx
+import Layout from './Layout'
+const Products = () =>{
+    return (
+        <Layout>
+            <div>
+                <h1>Products</h1>
+            </div>
+        </Layout>
+    )
+}
+
+export default Products
+
+#Step-9 components/Admin/Settings.jsx
+import Layout from './Layout'
+const Settings = () =>{
+    return(
+        <Layout>
+            <h1>Hello Settings</h1>
+        </Layout>
+    )
+}
+export default Settings
+
+#Step-10 App.jsx
+import 'remixicon/fonts/remixicon.css'
+import {BrowserRouter, Routes, Route } from 'react-router-dom'
+
+import NoFound from './components/Admin/NoFound'
+import Dashboard from './components/Admin/Dashboard'
+import Customers from './components/Admin/Customers'
+import Logout from './components/Admin/Logout'
+import Payments from './components/Admin/Payments'
+import Settings from './components/Admin/Settings'
+import Products from './components/Admin/Products'
+import Order from './components/Admin/Orders'
+const App = ()=>{
+     return(
+       <BrowserRouter>
+       <Routes>
+        <Route path="/admin">
+        <Route path="dashboard" element={<Dashboard/>} />
+        <Route path="customers" element={<Customers/>} />
+        <Route path="logout" element={<Logout/>} />
+        <Route path="payments" element={<Payments/>} />
+        <Route path="Setting" element={<Settings/>}/>
+        <Route path="orders" element={<Order/>} />
+        <Route path="product" element={<Products/>} />
+        </Route>
+        <Route path="*" element={<NoFound/>}/>
+       </Routes>
+       </BrowserRouter>
+
+     )
+  }
+  export default App
+
+#Step-10 App.css
+#root {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+}
+
+.logo {
+  height: 6em;
+  padding: 1.5em;
+  will-change: filter;
+  transition: filter 300ms;
+}
+.logo:hover {
+  filter: drop-shadow(0 0 2em #646cffaa);
+}
+.logo.react:hover {
+  filter: drop-shadow(0 0 2em #61dafbaa);
+}
+
+@keyframes logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  a:nth-of-type(2) .logo {
+    animation: logo-spin infinite 20s linear;
+  }
+}
+
+.card {
+  padding: 2em;
+}
+
+.read-the-docs {
+  color: #888;
+}
+
+
