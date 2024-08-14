@@ -1,0 +1,108 @@
+#step-1 index.html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skills Display</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body onload="showSkills('web')">
+    <div class="container">
+        <div class="tabs">
+            <p class="tab" onclick="showSkills('web')">Web Developer</p>
+            <p class="tab" onclick="showSkills('mobile')">Mobile Developer</p>
+            <p class="tab" onclick="showSkills('embedded')">Embedded Systems</p>
+        </div>
+
+        <div class="content">
+            <div id="web" class="skills active">
+                <h3>Web Developer Skills</h3>
+                <ul>
+                    <li>HTML, CSS, JavaScript</li>
+                    <li>React.js, Node.js</li>
+                    <li>RESTful APIs, WebSockets</li>
+                    <li>Version Control (Git)</li>
+                </ul>
+            </div>
+            <div id="mobile" class="skills" style="display: none;">
+                <h3>Mobile Developer Skills</h3>
+                <ul>
+                    <li>Android Development (Java/Kotlin)</li>
+                    <li>iOS Development (Swift)</li>
+                    <li>React Native, Flutter</li>
+                    <li>Mobile UI/UX Design</li>
+                </ul>
+            </div>
+            <div id="embedded" class="skills" style="display: none;">
+                <h3>Embedded Systems Skills</h3>
+                <ul>
+                    <li>C/C++ Programming</li>
+                    <li>Microcontrollers (Arduino, ESP32)</li>
+                    <li>IoT Protocols (MQTT, HTTP)</li>
+                    <li>Real-Time Operating Systems (RTOS)</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script src="index.js"></script>
+</body>
+</html>
+
+#Step-2 style.css
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    width: 80%;
+    margin: 50px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+
+.tabs {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 20px;
+}
+
+.tab {
+    cursor: pointer;
+    padding: 10px 20px;
+    color: black;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.tab:hover {
+    text-decoration: underline;
+    text-decoration-color: green; /* Color of the underline */
+}
+
+.skills {
+    display: none;
+}
+
+.skills.active {
+    display: block;
+}
+
+#step-3 index.js
+function showSkills(skillType) {
+    // Hide all skill sections
+    var skillSections = document.querySelectorAll('.skills');
+    skillSections.forEach(function(section) {
+        section.style.display = 'none';
+    });
+
+    // Show the selected skill section
+    var selectedSkill = document.getElementById(skillType);
+    selectedSkill.style.display = 'block';
+}
